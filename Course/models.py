@@ -1,6 +1,7 @@
 from django.db import models
 
 from Direction.models import Direction
+from Lesson.models import Lesson
 
 
 class Course(models.Model):
@@ -19,6 +20,12 @@ class Course(models.Model):
         on_delete=models.CASCADE,
         related_name='courses',
         verbose_name='Направление'
+    )
+    lessons = models.ManyToManyField(
+        Lesson,
+        verbose_name='Уроки',
+        related_name='courses',
+        blank=True
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создан")
 
