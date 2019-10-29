@@ -10,20 +10,6 @@ class Course(models.Model):
         max_length=255,
         verbose_name='Название'
     )
-    anons = models.TextField(
-        verbose_name='Анонс'
-    )
-    description = models.TextField(
-        verbose_name='Описание'
-    )
-    link_to_video = models.CharField(
-        max_length=255,
-        verbose_name='Ссылка на видео'
-    )
-    link_to_file = models.CharField(
-        max_length=255,
-        verbose_name='Ссылка на файл'
-    )
     position = models.PositiveIntegerField(
         default=1,
         verbose_name='Позиция'
