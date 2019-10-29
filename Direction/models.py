@@ -12,6 +12,7 @@ class Direction(models.Model):
         default=1,
         verbose_name='Позиция'
     )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создан")
 
     class Meta:
         ordering = ['position']
