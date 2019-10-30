@@ -10,11 +10,11 @@ class CourseView(APIView):
     def get(self, request, pk=None):
         key = 'courses'
         if pk is not None:
-            course = get_object_or_404(Course.objects.all(), pk=pk)
+            course = get_object_or_404(Course.objects.prefetch_related('direction', 'lessons').all(), pk=pk)
             serializer = CourseSerializer(course)
             key = 'course'
         else:
-            courses = Course.objects.all()
+            courses = Course.objects.prefetch_related('direction', 'lessons').all()
             serializer = CourseSerializer(courses, many=True)
         return Response({key: serializer.data})
 

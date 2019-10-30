@@ -47,11 +47,11 @@ class LessonView(APIView):
     def get(self, request, pk=None):
         key = 'lessons'
         if pk is not None:
-            lesson = get_object_or_404(Lesson.objects.all(), pk=pk)
+            lesson = get_object_or_404(Lesson.objects.prefetch_related('materials').all(), pk=pk)
             serializer = LessonSerializer(lesson)
             key = 'lesson'
         else:
-            lessons = Lesson.objects.all()
+            lessons = Lesson.objects.prefetch_related('materials').all()
             serializer = LessonSerializer(lessons, many=True)
         return Response({key: serializer.data})
 
